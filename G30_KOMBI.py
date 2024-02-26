@@ -199,7 +199,7 @@ while True:
                 0xa7,counter_4bit_eps+0xf0,0xfe,0xff,0x13], is_extended_id=False),
             
             can.Message(arbitration_id=0x5c0, data=[ # MIL
-                0x40, 34, 0x00, 0x30+lowpressure, 0xFF, 0xFF, 0xFF, 0xFF], is_extended_id=False),
+                0x40, 34, 0x00, 0x30+check_engine, 0xFF, 0xFF, 0xFF, 0xFF], is_extended_id=False),
             
             can.Message(arbitration_id=0x5c1, data=[ # gear wakeup
                 255,255,255,255, 0, 0, 0, 0], is_extended_id=False),
