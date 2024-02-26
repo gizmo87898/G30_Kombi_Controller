@@ -5,8 +5,33 @@ g30
 0x291 - units (made outside temp go to c)
 0x2a5 - made color go from orange to grey
 0x2c4 temp gauge
+349 fuel
+3d8 drive mode
+1f6 directionals
+510 wakeup
+3c ignition
+f3 rpm
+39e date and time
+1a1 speed
+5c0 check control messages
+291 language and units
+a5 eco pro boost
+2ec navigation
+30b auto start/stop
+36e abs
+2a7 steering lock/esp light
+581 or DF shiftlight
+289 cruise control
+0x2ec is a blue "let foot off pedal" symbol in the center, a zigzag or km/h sign in a cirlce on the left, and a roundabout/fork sign on the right. eco pro and navi shit?
+0x23d is some weird demo thing???? shows cruise control working, along with AEB, ped. AEB, making/receiving calls, navi directions, and a navi map.
+0x28e tpms message rl low
+0x2f something limited
+23a units 
+3fd gear
+36f parklight
 0x30b - auto startstop
-0x3d8 - drive mode???
+
+0x3d8 - drive mode
 0x3d8 byte 2 (index 1)
 1 = sport
 2 = sport plus
@@ -19,13 +44,30 @@ g30
 9 = eco pro indiv
 a = adaptive
 
-0x2ec is a blue "let foot off pedal" symbol in the center, a zigzag or km/h sign in a cirlce on the left, and a roundabout/fork sign on the right. eco pro and navi shit?
 
 
-0x23d is some weird demo thing????
 
-0x28e tpms message rl low
-0x2f something limited
-23a units 
 
-2a5 color??? white/orange
+
+cc ids that are confirmed to work
+0x22 0x24 is mil and tc off for CC message
+0x39 is auto hold
+24 brake light
+34 is mil
+35 is tc
+36 is tc off
+42 is brake and abs fault
+48 red park light
+57 is auto h
+70 is eps light
+73 is green park light
+97 restraint system 
+184 dtc activates
+215 tc light
+236 abs and tc
+240 pbrake malf
+
+
+id 223 shift lights
+
+
