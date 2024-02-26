@@ -1,0 +1,403 @@
+
+    CC-ID 1 – Active Cruise Control Disabled, Poor Conditions
+    CC-ID 2 – Active Cruise Control Disabled, Poor Signal
+    CC-ID 3 – Active Cruise Control Failure
+    CC-ID 4 – Trailer Parking Light Left
+    CC-ID 5 – Trailer Parking Light Right
+    CC-ID 6 – Trailer Indicator Left
+    CC-ID 7 – Trailer Indicator Right
+    CC-ID 8 – Trailer Brake Lights
+    CC-ID 9 – Trailer Fog Light
+    CC-ID 10 – ARS Roll Malfunction
+    CC-ID 11 – Steering Malfunction
+    CC-ID 12 – Dynamic Drive Failed
+    CC-ID 13 – Radio Key in Lock
+    CC-ID 14 – Door Open Front Right
+    CC-ID 15 – Door Open Front Left
+    CC-ID 16 – Door Open Rear Left
+    CC-ID 17 – Door Open Rear Right
+    CC-ID 18 – Bonnet open
+    CC-ID 19 – Boot open
+    CC-ID 21 – Ignition Problem, Depress Brake to Start
+    CC-ID 22 – Starter Problem, Engine cannot Restart
+    CC-ID 24 – DBC Dynamic Brake Control Brake Assist Failed
+    CC-ID 25 – Preheating, Please Wait
+    CC-ID 26 – Cruise Control Defective
+    CC-ID 27 – Engine Oil Level Low
+    CC-ID 28 – Engine Oil Level Below Minimum
+    CC-ID 29 – Engine Problem, Power Reduced
+    CC-ID 30 – Engine Problem, Stop Engine
+    CC-ID 31 – Engine Problem, Increased Emissions
+    CC-ID 32 – Fuel Cap Open
+    CC-ID 33 – Engine Problem, Reduce Engine Load
+    CC-ID 35 – DSC Failed
+    CC-ID 36 – DSC/DTC Deactivated
+    CC-ID 38 – Wrong Remote Key
+    CC-ID 39 – Engine Overheat, Stop Engine
+    CC-ID 40 – Press Brake to Start
+    CC-ID 41 – Service Due
+    CC-ID 42 – Brake and Driving Control Failure
+    CC-ID 42 – DSC Control System/Ride Height adjustment
+    CC-ID 43 – Dynamic Damper Control Failed
+    CC-ID 45 – Level Control System Failure
+    CC-ID 46 – Fasten Seat Belt
+    CC-ID 48 – Parking Brake
+    CC-ID 49 – Particulate Filter Malfunction
+    CC-ID 50 – Tyre Monitoring Failure
+    CC-ID 50 – Runflat Indicator Failed
+    CC-ID 51 – Parking Brake Overheated
+    CC-ID 52 – Parking Brake Failed
+    CC-ID 53 – Automatic Hold Malfunction
+    CC-ID 54 – Parking Brake Malfunction
+    CC-ID 55 – Parking Brake Release
+    CC-ID 55 – Parking Brake Active
+    CC-ID 56 – Parking Brake
+    CC-ID 57 – Parking Brake
+    CC-ID 58 – Parking Brake
+    CC-ID 59 – Active Cruise Control Disabled, Parking Brake
+    CC-ID 60 – Speedometer Failure
+    CC-ID 62 – Vehicle Speed Limit Exceeded
+    CC-ID 63 – Tyre Failure
+    CC-ID 63 – Tyre Puncture
+    CC-ID 65 – Change Key, Key Battery Low
+    CC-ID 66 – Remote Control/Key Fault
+    CC-ID 67 – Remote Control/Key Battery Discharged
+    CC-ID 68 – Remote Key Stationary Function Battery Low
+    CC-ID 69 – Active Cruise Control Disabled, Speed too Low
+    CC-ID 70 – Servotronic Failed
+    CC-ID 71 – Brake Pads Worn
+    CC-ID 73 – EPS Inoperative
+    CC-ID 74 – Brake Fluid Low
+    CC-ID 75 – Trailer Electrics Failed
+    CC-ID 76 – Crash Safety Module
+    CC-ID 78 – Vehicle Speed Limit Exceeded
+    CC-ID 79 – Low External Temperature
+    CC-ID 85 – Active Cruise Control Disabled, Hill Descent
+    CC-ID 87 – Right Rear Light Failure
+    CC-ID 88 – Dipped Beam Left Failure
+    CC-ID 89 – Dipped Beam Right Failure
+    CC-ID 90 – Trailer Reverse Light
+    CC-ID 91 – Fasten Seat Belt
+    CC-ID 92 – Front Passenger Seat Belt Pretensioner Fault
+    CC-ID 93 – Driver’s Seat Belt Pretensioner Fault
+    CC-ID 94 – Rear Left Seat Belt Pretensioner Fault
+    CC-ID 95 – Rear Right Seat Belt Pretensioner Fault
+    CC-ID 97 – Multiple Restraint System Fault
+    CC-ID 103 – Gearbox Overheating- Drive with Care
+    CC-ID 104 – Gearbox Overheating- Reduced Output
+    CC-ID 105 – Gearbox Overheated – Stop Vehicle
+    CC-ID 106 – Rear Left Side Airbag Fault
+    CC-ID 107 – Rear Right Side Airbag Fault
+    CC-ID 108 – Driver’s Airbag Fault
+    CC-ID 109 – Passenger Airbag Fault
+    CC-ID 111 – Number Plate Light Left Failure
+    CC-ID 113 – Sidelights Switched On
+    CC-ID 114 – Rear Fog Light Failure
+    CC-ID 115 – Reverse Light Right Failure
+    CC-ID 116 – Indicator Rear Left Failure
+    CC-ID 117 – Reverse Light Left Failure
+    CC-ID 118 – Rear Light Right Failure
+    CC-ID 119 – Indicator Front Right Failure
+    CC-ID 120 – Dipped Beam Left Failure
+    CC-ID 121 – Dipped Beam Right Failure
+    CC-ID 122 – Indicator Front Right Failure
+    CC-ID 123 – Rear Light Right Failure
+    CC-ID 124 – Indicator Right Failure
+    CC-ID 125 – Indicator Rear Right Failure
+    CC-ID 126 – Fog Light Right Failure
+    CC-ID 127 – Side Indicator Left Failure
+    CC-ID 128 – Left High Beam Failure
+    CC-ID 129 – Rear Fog Light Failure
+    CC-ID 130 – Right High Beam Failure
+    CC-ID 131 – Parking Light Left Front Failure
+    CC-ID 132 – Front Right Side Light Failure
+    CC-ID 133 – Right Rear Light Failure
+    CC-ID 134 – Right Brake Light Failure
+    CC-ID 135 – Centre Brake Light Failure
+    CC-ID 136 – Left Brake Light Failure
+    CC-ID 137 – Number Plate Light Right Failure
+    CC-ID 138 – Fog Light Left Failure
+    CC-ID 139 – Front Left Tyre Pressure
+    CC-ID 140 – Rear Right Tyre Pressure
+    CC-ID 141 – Rear Left Tyre Pressure
+    CC-ID 142 – Check Tyre Pressures
+    CC-ID 143 – Front Right Tyre Pressure
+    CC-ID 144 – Tyre Pressure Monitoring Fault
+    CC-ID 145 – Tyre Pressure Monitoring Deactivated
+    CC-ID 147 – Tyre Puncture Detected
+    CC-ID 148 – Brake Light Control Failed
+    CC-ID 149 – Tyre Pressure Monitoring Failure
+    CC-ID 158 – Active Cruise Control Disabled, Sensor Error
+    CC-ID 164 – Windscreen Washer Fluid Low
+    CC-ID 165 – Low External Temperature
+    CC-ID 166 – Engine Coolant Level Low
+    CC-ID 167 – Reset Clock
+    CC-ID 168 – Transmission Malfunction
+    CC-ID 169 – Transmission Position N
+    CC-ID 170 – Transmission Malfunction Reset
+    CC-ID 171 – Transmission Failsafe Active
+    CC-ID 172 – Transmission Malfunction
+    CC-ID 173 – Transmission Position D Only
+    CC-ID 174 – Transmission Position P Only
+    CC-ID 175 – Transmission Malfunction, Position P
+    CC-ID 176 – Active Cruise Control Disabled, Sensor Error
+    CC-ID 177 – Active Cruise Control Malfunction
+    CC-ID 178 – Transmission in Neutral, Engage Parking Brake
+    CC-ID 179 – Transmission Malfunction
+    CC-ID 180 – Dynamic Damper Control Fault
+    CC-ID 181 – System Check Failed
+    CC-ID 182 – Oil Level Sensor Malfunction
+    CC-ID 183 – Windscreen Wiper Malfunction
+    CC-ID 184 – Dynamic Traction Control Active
+    CC-ID 185 – Gear Indicator Failed
+    CC-ID 186 – ELV Steering Lock Fault. Engine cannot be restarted
+    CC-ID 187 – ELV Steering Lock Active. Move Steering Wheel to Restart
+    CC-ID 192 – Tyre Pressure Monitoring Deactivated, System Initialising
+    CC-ID 195 – Park Distance Control Failure
+    CC-ID 196 – Indicator Front Right Failure
+    CC-ID 197 – Indicator Front Left Failure
+    CC-ID 199 – Cruise Control Failed
+    CC-ID 201 – Automatic Hold Disabled
+    CC-ID 203 – Transmission Position in N
+    CC-ID 204 – Dynamic Drive Disabled
+    CC-ID 205 – Remote Key not Present
+    CC-ID 206 – Engine Start on next Press
+    CC-ID 207 – Central Electronics Failure, Stop Vehicle
+    CC-ID 208 – Comfort Access Deactivated
+    CC-ID 209 – Remote Key in Vehicle, Locking not possible
+    CC-ID 210 – Parking Brake Failed
+    CC-ID 211 – Parking Brake Failed
+    CC-ID 212 – Engine Oil Pressure, Stop Engine
+    CC-ID 213 – Battery Not Charged
+    CC-ID 215 – Dynamic Stability Control
+    CC-ID 216 – Fuel Pump Fault
+    CC-ID 217 – No Remote Control
+    CC-ID 220 – Battery Discharge Rate High
+    CC-ID 229 – Battery Charge Low
+    CC-ID 231 – Light System Failure
+    CC-ID 236 – Brake and Stability Systems Failure
+    CC-ID 237 – Stability Systems Failure
+    CC-ID 238 – Active Cruise Control Disabled, Hill Descent
+    CC-ID 239 – Parking Brake Failed
+    CC-ID 240 – Parking Brake Failed
+    CC-ID 241 – Parking Brake Failed
+    CC-ID 242 – Parking Brake Failed
+    CC-ID 243 – Parking Brake Failed
+    CC-ID 245 – Level Control System Failure
+    CC-ID 246 – Active Cruise Control Disabled, Speed too Low
+    CC-ID 247 – Battery Monitoring Failed
+    CC-ID 248 – Brake Signal Malfunction, Gears May Be Selected Without Brake
+    CC-ID 250 – Brake Signal Malfunction, Gears May Be Selected Without Brake
+    CC-ID 251 – Transmission Position P
+    CC-ID 252 – Transmission Malfunction
+    CC-ID 253 – Parking Brake Failed
+    CC-ID 254 – Transmission Malfunction Emergency Program
+    CC-ID 255 – Malfunction R,N,D Only With Engine Running
+    CC-ID 256 – Headlight Leveling System Failure
+    CC-ID 257 – Engine Temperature Too High, Drive Moderately
+    CC-ID 259 – Window Anti-Trap Deactivated
+    CC-ID 260 – Sunroof Anti-Trap Deactivated
+    CC-ID 261 – Window Anti-Trap Failure
+    CC-ID 262 – Sunroof Anti-Trap Failure
+    CC-ID 265 – Check Tyre Pressures, Mismatch
+    CC-ID 266 – Rollover Protection Malfunction
+    CC-ID 267 – Rear Window Drive
+    CC-ID 268 – Luggage Compartment Position
+    CC-ID 270 – Convertible Top Not Locked
+    CC-ID 271 – Convertible Top, Vehicle Speed
+    CC-ID 272 – Convertible Top Failure
+    CC-ID 273 – Active Steering Fault
+    CC-ID 275 – Low Fuel
+    CC-ID 276 – Engine Speed Too High
+    CC-ID 277 – Active Cruise Control Disabled, Gear Selection
+    CC-ID 278 – Engine Speed Too Low
+    CC-ID 279 – Driver’s Seat Insecure
+    CC-ID 280 – Passenger’s Seat Insecure
+    CC-ID 281 – Service Due
+    CC-ID 282 – Instrument Cluster
+    CC-ID 283 – Instrument Cluster
+    CC-ID 284 – Service Overdue
+    CC-ID 285 – Service OK
+    CC-ID 286 – Fuel Low / Range
+    CC-ID 287 – Clutch Overheated
+    CC-ID 288 – Transmission Malfunction, Failsafe Activated
+    CC-ID 289 – Transmission Malfunction, Failsafe Activated
+    CC-ID 290 – Transmission Malfunction, Journey May Be Continued With Care
+    CC-ID 291 – Transmission Malfunction, Failsafe Activated
+    CC-ID 292 – Transmission Malfunction, Re-Select Gear
+    CC-ID 293 – Press Brake and Select Neutral to Start
+    CC-ID 295 – Adaptive Cornering Lights Failure
+    CC-ID 296 – SOS Deactivated, Check Phone
+    CC-ID 297 – BMW Assist Deactivated
+    CC-ID 298 – BMW Assist Not Possible
+    CC-ID 299 – SOS Call System Failure
+    CC-ID 300 – BMW Assist Deactivated, Check SIM.
+    CC-ID 301 – Seatback Monitoring Failed
+    CC-ID 302 – Park Not Engaged
+    CC-ID 303 – Depress Clutch to Start
+    CC-ID 304 – Check Battery Condition
+    CC-ID 305 – Check Battery Terminals
+    CC-ID 306 – Battery Charge Low
+    CC-ID 307 – Transmission Malfunction, Multiple Failures
+    CC-ID 308 – Parking Brake Applied
+    CC-ID 309 – Fuel Pump Malfunction
+    CC-ID 321 – Active Steering Deactivated
+    CC-ID 322 – Transmission Teach-in Active
+    CC-ID 323 – Clutch Teach-in Active
+    CC-ID 325 – Transmission in Neutral
+    CC-ID 326 – Transmission in Drive
+    CC-ID 327 – Tyre Pressure Monitoring Deactivated, System Initialising
+    CC-ID 328 – Brake Pad Wear Sensor
+    CC-ID 330 – Hill Decent Control not Available
+    CC-ID 331 – Hill Decent Control Active
+    CC-ID 332 – Hill Decent Control Deactivated
+    CC-ID 333 – Hill Decent Control not Possible
+    CC-ID 334 – Run Flat System Requires Standardisation
+    CC-ID 335 – Ignition Switched On
+    CC-ID 336 – Dynamic Stability Control
+    CC-ID 337 – Dynamic Cruise Control Failure
+    CC-ID 338 – Dynamic Cruise Control Deactivated, Parking Brake
+    CC-ID 339 – Dynamic Cruise Control Deactivated, Excessive Braking
+    CC-ID 340 – Dynamic Cruise Control Deactivated, Poor Conditions
+    CC-ID 341 – Dynamic Cruise Control Deactivated, Gear Selection
+    CC-ID 342 – Dynamic Cruise Control Deactivated, Speed Too Low
+    CC-ID 345 – Brake/Tail Light Failure Right
+    CC-ID 346 – Brake/Tail Light Failure Left
+    CC-ID 347 – Position R/N/D Not Possible
+    CC-ID 348 – Engage Park Before Leaving Vehicle
+    CC-ID 349 – Engage Park Before Switching Ignition Off
+    CC-ID 350 – 4X4 System Failure
+    CC-ID 351 – 4X4 and DSC Failure
+    CC-ID 352 – Brakes Too Hot
+    CC-ID 353 – Brakes Overheated
+    CC-ID 354 – Start Assist Inactive
+    CC-ID 356 – Night Vision Failure
+    CC-ID 363 – Transmission Overload
+    CC-ID 364 – RPA Initialisation
+    CC-ID 365 – Transmission Failsafe
+    CC-ID 366 – Transmission Fault, Failsafe
+    CC-ID 367 – Engine Temperature Too High
+    CC-ID 368 – Transmission Failsafe Active
+    CC-ID 369 – 4X4, DSC and ABS Failure
+    CC-ID 370 – 4X4, DSC, ABS and EBV Failure
+    CC-ID 371 – Number Plate Light Failure
+    CC-ID 372 – Brake Force Display Light Failure Left
+    CC-ID 373 – Brake Force Display Light Failure Right
+    CC-ID 374 – Main Beam Assist Defective
+    CC-ID 375 – Main Beam Assist Not Active
+    CC-ID 376 – Main Beam Assist Not Active
+    CC-ID 377 – Main Beam Assist Sensativity
+    CC-ID 378 – Sidelight/Daytime Lights Defective- Left
+    CC-ID 379 – Sidelight/Daytime Lights Defective- Right
+    CC-ID 380 – Turn Signal Lights Defective- Left
+    CC-ID 381 – Turn Signal Lights Defective- Right
+    CC-ID 382 – DSC Restricted, Brake Pressure Sensor
+    CC-ID 384 – DSC Puncture Detected
+    CC-ID 385 – Steering Assistance Failed
+    CC-ID 389 – Fasten Driver’s Seat Belt
+    CC-ID 390 – Fasten Passenger’s Seat Belt
+    CC-ID 391 – Multiple Restraint System
+    CC-ID 392 – Fasten Seat Belt
+    CC-ID 393 – Gear Selector Position
+    CC-ID 394 – Gear Selector Lever
+    CC-ID 395 – Parking Brake Malfunction
+    CC-ID 398 – Engine Bay Cover Open
+    CC-ID 399 – SMG State Undetermined
+    CC-ID 400 – Engine Oil Level High
+    CC-ID 401 – Roof Mechanism Failure
+    CC-ID 402 – Apply Foot Brake
+    CC-ID 403 – Trailer Rear Light/Numberplate Light
+    CC-ID 404 – Trailer Left Indicator/Brake Light
+    CC-ID 405 – Trailer Right Indicator/Brake Light
+    CC-ID 406 – Trailer Electric Brake Failed
+    CC-ID 410 – Parking Brake Malfunction
+    CC-ID 413 – Steering Column Unlocked
+    CC-ID 415 – Battery Discharge Rate High
+    CC-ID 416 – Luggage Compartment Partition
+    CC-ID 419 – Drive Malfunction
+    CC-ID 420 – Transmission Malfunction
+    CC-ID 422 – Luggage Compartment Lower Lid
+    CC-ID 423 – Trailer Coupling Lock
+    CC-ID 424 – Reversing Camera Soiled
+    CC-ID 425 – Reversing Camera Failure
+    CC-ID 427 – Engine Oil Pressure Low
+    CC-ID 428 – Side Camera Defective
+    CC-ID 430 – Transport Mode Active
+    CC-ID 431 – Brake Loading Too High
+    CC-ID 432 – Roof Drive Overload
+    CC-ID 434 – Seat Calibration Required
+    CC-ID 435 – Lane Departure Warning Fault
+    CC-ID 436 – Seat Position Detection Fault
+    CC-ID 437 – Parking Lights On
+    CC-ID 439 – Parking Brake Overload
+    CC-ID 441 – Cruise Control Deactivated
+    CC-ID 442 – Vehicle may Roll Away
+    CC-ID 443 – Vehicle Rolling Away
+    CC-ID 445 – Vehicle Not Level
+    CC-ID 446 – Launch Control
+    CC-ID 448 – Fuel Filter
+    CC-ID 449 – Trailer Coupling Electrics Failed
+    CC-ID 450 – Automatic Start Deactivated
+    CC-ID 452 – Release Autohold
+    CC-ID 453 – Cruise Control Short Range Sensors Disabled
+    CC-ID 454 – Cruise Control Short Range Sensors Soiled
+    CC-ID 465 – Parking Brake Failure
+    CC-ID 467 – Gear Selector Malfunction/Locking
+    CC-ID 469 – Cruise Control Deactivated, Sensors Soiled
+    CC-ID 474 – Driving Performance Control Failed
+    CC-ID 478 – Cruise Control Deactivated, Radio Astronomy Intervention
+    CC-ID 480 – Parking Brake Malfunction
+    CC-ID 481 – Parking Brake Malfunction
+    CC-ID 482 – Parking Brake Failure
+    CC-ID 483 – Active Cruise Control Temporarily Disabled
+    CC-ID 490 – Parking Assist Failure, Parking Assist Aborted
+    CC-ID 492 – AdBlue Reserve Low
+    CC-ID 493 – AdBlue Reserve Critical
+    CC-ID 493 – AdBlue Reserve Empty
+    CC-ID 506 – AdBlue Fluid Incorrect
+    CC-ID 516 – Roof Operation Cancelled
+    CC-ID 518 – Convertible Top Not Locked
+    CC-ID 519 – Roof Operation Not Possible
+    CC-ID 538 – Gearbox Malfunction
+    CC-ID 539 – Gearbox Malfunction 5-7
+    CC-ID 540 – Gearbox Malfunction P
+    CC-ID 541 – Gearbox Malfunction Manually Release Parking Lock
+    CC-ID 557 – Rolling Possible, Secure Vehicle
+    CC-ID 558 – Roof Position Detection
+    CC-ID 559 – Roof Drive Overheated
+    CC-ID 560 – Roof Operation Not Possible
+    CC-ID 561 – Roof Emergency Operation
+    CC-ID 562 – Roof Unlocked
+    CC-ID 565 – Gearbox Position P only Available when Stationary
+    CC-ID 569 – Drive Malfunction, Stop
+    CC-ID 570 – Drive Range Low
+    CC-ID 571 – Drive, Only Forward Crawling Speed is Possible
+    CC-ID 572 – Drive, Only Forward and Reverse Crawling Speed is Possible
+    CC-ID 573 – Gearbox Malfunction
+    CC-ID 574 – No Braking Energy Reclamation
+    CC-ID 575 – Refueling- Wait
+    CC-ID 576 – Refueling Only Possible When Standing
+    CC-ID 577 – Refueling Possible
+    CC-ID 578 – Fuel Filler Flap Open
+    CC-ID 579 – Fuel System Malfunction
+    CC-ID 584 – Transport Mode Active
+    CC-ID 585 – High Voltage System Malfunction
+    CC-ID 586 – High Voltage System Malfunction
+    CC-ID 587 – High Voltage Battery Low
+    CC-ID 588 – High Voltage Battery, Switch Ignition on to Charge
+    CC-ID 589 – High Voltage Battery Charging
+    CC-ID 590 – Vehicle Ready
+    CC-ID 591 – High Voltage Battery Charging Aborted
+    CC-ID 601 – Braking System Malfunction
+    CC-ID 602 – Braking System Malfunction
+    CC-ID 603 – Braking System Sensor Malfunction
+    CC-ID 604 – Braking System Failure
+    CC-ID 606 – High Voltage Battery Output Restricted
+    CC-ID 607 – High Voltage Battery Regeneration Required
+    CC-ID 608 – Tyre Pressure, Front Left
+    CC-ID 609 – Tyre Pressure, Front Right
+    CC-ID 610 – Tyre Pressure, Rear Right
+    CC-ID 611 – Tyre Pressure, Rear Left
+    CC-ID 612 – MRS Acceleration Sensors
+    CC-ID 811 – Bonnet Open
+    CC-ID 999 – Instrument Cluster Fault

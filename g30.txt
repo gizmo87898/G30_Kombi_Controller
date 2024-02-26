@@ -1,0 +1,31 @@
+g30
+0x32 - makes it change bttween 0 and ready on the tach
+0x3c terminal status
+0x202 - backlight brightness
+0x291 - units (made outside temp go to c)
+0x2a5 - made color go from orange to grey
+0x2c4 temp gauge
+0x30b - auto startstop
+3d8 - drive3 mode???
+ed8 byte 2 (index 1)
+1 = sport
+2 = sport plus
+3 = sport infdiv
+4 = confort
+5 = comfort plus
+6 = none
+7 = eco pro
+8 = eco pro 2
+9 = eco pro indiv
+a = adaptive
+
+0x2ec is a blue "let foot off pedal" symbol in the center, a zigzag or km/h sign in a cirlce on the left, and a roundabout/fork sign on the right. eco pro and navi shit?
+
+
+0x23d is some weird demo thing????
+
+0x28e tpms message rl low
+0x2f something limited
+23a units 
+
+2a5 color??? white/orange
