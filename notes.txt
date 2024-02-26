@@ -29,21 +29,20 @@ f3 rpm
 5c0 check control messages
 291 language and units
 a5 eco pro boost
-2ec navigation
-30b auto start/stop
 36e abs
 2a7 steering lock/esp light
 581 or DF shiftlight
 289 cruise control
 0x2ec is a blue "let foot off pedal" symbol in the center, a zigzag or km/h sign in a cirlce on the left, and a roundabout/fork sign on the right. eco pro and navi shit?
-0x23d is some weird demo thing???? shows cruise control working, along with AEB, ped. AEB, making/receiving calls, navi directions, and a navi map.
+0x23d and 0x322 is some weird demo thing???? shows cruise control working, along with AEB, ped. AEB, making/receiving calls, navi directions, and a navi map.
 0x28e tpms message rl low
 0x2f something limited
 23a units 
 3fd gear
+0x28e maintainance due in xxx milews i think
 36f parklight
 0x30b - auto startstop
-
+a few after 30b it showed the service due in --- icon, may be service interval
 0x3d8 - drive mode
 0x3d8 byte 2 (index 1)
 1 = sport

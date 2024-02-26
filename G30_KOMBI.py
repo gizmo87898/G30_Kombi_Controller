@@ -18,7 +18,7 @@ start_time_100ms = time.time()
 start_time_10ms = time.time()
 start_time_5s = time.time()
 
-id_counter = 0x104
+id_counter = 0x280
 
 counter_8bit = 0
 counter_4bit_100ms = 0
@@ -28,15 +28,14 @@ counter_4bit_10ms = 0
 abs_counter = 0
 
 ignition = True
-rpm = 2000
-speed = 120
+rpm = 780
+speed = 0
 gear = b'1'
 gearSelector = 0
-coolant_temp = 120
-oil_temp = 120
-fuel = 50
-oil_temp = 120
-drive_mode = 2
+coolant_temp = 90
+oil_temp = 90
+fuel = 100
+drive_mode = 7
 
 shiftlight = False
 shiftlight_start = 5000
@@ -195,8 +194,8 @@ while True:
             can.Message(arbitration_id=0x21a, data=[ # lights "lamp status"
                 (lowbeam*4)+(highbeam*2)+(foglight*32)+(rear_foglight*64), 0, 0xf7], is_extended_id=False),
 
-            can.Message(arbitration_id=0x2a7, data=[ # Power STeering "display, Check Control, driving dynamics" 
-                0xa7,counter_4bit_eps+0xf0,0xfe,0xff,0x13], is_extended_id=False),
+            can.Message(arbitration_id=0x289, data=[ # Cruise Control
+                0x13,0xf+counter_4bit_mpg,random.randint(0,255),random.randint(0,255),random.randint(0,255),random.randint(0,255),random.randint(0,255),random.randint(0,255)], is_extended_id=False),
             
             can.Message(arbitration_id=0x5c0, data=[ # MIL
                 0x40, 34, 0x00, 0x30+check_engine, 0xFF, 0xFF, 0xFF, 0xFF], is_extended_id=False),
@@ -244,13 +243,12 @@ while True:
         
         #Update checksums and counters here
         counter_8bit = (counter_8bit + 1) % 256
-
         counter_4bit_100ms = (counter_4bit_100ms + 1) % 15
         counter_4bit_eps = (counter_4bit_eps + 4) % 15
         counter_4bit_mpg = (counter_4bit_mpg + 2) % 15
         
         messages_100ms[12].data[0] = crc8_sae_j1850(messages_100ms[12].data[1:], 0xD6, 0x1d,0xff) # Gear 3fd Checksum 
-
+        messages_100ms[3].data[0] = crc8_sae_j1850(messages_100ms[3].data[1:], 0x82, 0x1d,0xff) # Cruise Control 289 checksum
         # Send Messages
         for message in messages_100ms:
             bus.send(message)
