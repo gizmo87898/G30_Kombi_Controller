@@ -1,11 +1,24 @@
 g30
 0x32 - makes it change bttween 0 and ready on the tach
 0x3c terminal status
+0x3c ignition byte bruteforce results
+1 off
+3 on backlght
+5 acc?
+6 more awake
+7 lights flash and all
+12 turns off
+13 lights go out
 0x202 - backlight brightness
 0x291 - units (made outside temp go to c)
 0x2a5 - made color go from orange to grey
 0x2c4 temp gauge
 349 fuel
+all 3s for data on the fuel id says 77 ohms for tank sensors
+44444444 is 102 ohms 450mi range
+33333333 is 77 ohms
+22222222 is 51 ohms (very full @ 508 mi range)
+11111111 is 25 ohms still 508 mi range
 3d8 drive mode
 1f6 directionals
 510 wakeup
@@ -44,11 +57,6 @@ a5 eco pro boost
 9 = eco pro indiv
 a = adaptive
 
-
-
-
-
-
 cc ids that are confirmed to work
 0x22 0x24 is mil and tc off for CC message
 0x39 is auto hold
@@ -67,7 +75,7 @@ cc ids that are confirmed to work
 236 abs and tc
 240 pbrake malf
 
-
-id 223 shift lights
+unlock code 31
+last 7 is g894990 for my cluster
 
 
