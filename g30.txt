@@ -6,11 +6,11 @@ g30
 0x2a5 - made color go from orange to grey
 0x2c4 temp gauge
 0x30b - auto startstop
-3d8 - drive3 mode???
-ed8 byte 2 (index 1)
+0x3d8 - drive mode???
+0x3d8 byte 2 (index 1)
 1 = sport
 2 = sport plus
-3 = sport infdiv
+3 = sport indiv
 4 = confort
 5 = comfort plus
 6 = none
