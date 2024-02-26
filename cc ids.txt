@@ -1,4 +1,4 @@
-
+a list of bmw cc-ids, not idea if they all work gor the g30 or not.
     CC-ID 1 – Active Cruise Control Disabled, Poor Conditions
     CC-ID 2 – Active Cruise Control Disabled, Poor Signal
     CC-ID 3 – Active Cruise Control Failure
