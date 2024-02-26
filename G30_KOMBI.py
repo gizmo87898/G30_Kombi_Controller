@@ -18,7 +18,6 @@ start_time_100ms = time.time()
 start_time_10ms = time.time()
 start_time_5s = time.time()
 
-
 id_counter = 0x104
 
 counter_8bit = 0
@@ -31,12 +30,13 @@ abs_counter = 0
 ignition = True
 rpm = 2000
 speed = 120
+gear = b'1'
+gearSelector = 0
 coolant_temp = 120
 oil_temp = 120
 fuel = 50
 oil_temp = 120
 drive_mode = 2
-
 
 shiftlight = False
 shiftlight_start = 5000
@@ -50,13 +50,8 @@ abs = False
 battery = False
 handbrake = False
 highbeam = False
-auto_highbeam = False
-park_light = False
 bc = False
 
-tpms = False #tbd
-cruise_control = False # tbd
-cruise_control_speed = 80 # tbd
 foglight = False
 rear_foglight = False
 lowbeam = False 
@@ -72,7 +67,6 @@ seatbelt = False
 
 def crc8_sae_j1850(data, xor, polynomial, init_val):
     crc = init_val
-
     for byte in data:
         crc ^= byte
         for _ in range(8):
@@ -81,7 +75,6 @@ def crc8_sae_j1850(data, xor, polynomial, init_val):
             else:
                 crc <<= 1
             crc &= 0xFF
-
     return crc ^ xor
 
 def calculate_section(start, end, input_num):
@@ -105,15 +98,11 @@ def on_button_release(event):
 def gui_thread():
     root = tk.Tk()
     root.title("G30")
-
     update_button = tk.Button(root, text="BC", command=lambda: None)
     update_button.pack(pady=10)
-
     update_button.bind("<ButtonPress>", on_button_press)
     update_button.bind("<ButtonRelease>", on_button_release)
-
     root.mainloop()
-
 
 # Start the GUI thread
 gui_thread = threading.Thread(target=gui_thread)
@@ -126,13 +115,14 @@ while True:
     ready_to_read, _, _ = select.select([sock], [], [], 0)
     if sock in ready_to_read:
         data, _ = sock.recvfrom(256)
-        packet = struct.unpack('I4sH2c7f2I3f16s16si', data)
-        rpm = int(max(min(packet[6], 8000), 0))
-        speed = min(int(packet[5]*2.5), 1200) #convert speed to km/h
-        coolant_temp = int(packet[8])
-        oil_temp = int(packet[11])
-        fuel = int(packet[9]*100)
-
+        packet = struct.unpack('I4sHc2c7f2I3f16s16si', data)
+        rpm = int(max(min(packet[7], 8000), 0))
+        speed = min(int(packet[6]*2.5), 1200) #convert speed to km/h
+        coolant_temp = int(packet[9])
+        oil_temp = int(packet[12])
+        fuel = int(packet[10]*100)
+        gearSelector = packet[3]
+        gear = packet[4]
         left_directional = False
         right_directional = False
         highbeam = False
@@ -147,31 +137,31 @@ while True:
         foglight = False
         lowbeam = False
         
-        if (packet[13]>>0)&1:
+        if (packet[14]>>0)&1:
             shiftlight = True
-        if (packet[13]>>1)&1:
+        if (packet[14]>>1)&1:
             highbeam = True
-        if (packet[13]>>2)&1:
+        if (packet[14]>>2)&1:
             handbrake = True
-        if (packet[13]>>4)&1:
+        if (packet[14]>>4)&1:
             tc = True
-        if (packet[13]>>10)&1:
+        if (packet[14]>>10)&1:
             abs = True
-        if (packet[13]>>9)&1:
+        if (packet[14]>>9)&1:
             battery = True
-        if (packet[13]>>5)&1:
+        if (packet[14]>>5)&1:
             left_directional = True
-        if (packet[13]>>6)&1:
+        if (packet[14]>>6)&1:
             right_directional = True
-        if (packet[13]>>11)&1:
+        if (packet[14]>>11)&1:
             ignition = True
-        if (packet[13]>>12)&1:
+        if (packet[14]>>12)&1:
             lowpressure = True
-        if (packet[13]>>13)&1:
+        if (packet[14]>>13)&1:
             check_engine = True
-        if (packet[13]>>14)&1:
+        if (packet[14]>>14)&1:
             foglight = True
-        if (packet[13]>>15)&1:
+        if (packet[14]>>15)&1:
             lowbeam = True
         #print(bc)
     # Send each message every 100ms
@@ -179,6 +169,21 @@ while True:
     if elapsed_time_100ms >= 0.05:
         date = datetime.now()
         fuel_level = round(0x2500 - (fuel / 100) * (0x2500 - 0x0200))
+        match gearSelector:
+            case b"P":
+                gearByte = 0x20
+            case b"R":
+                gearByte = 0x40
+            case b"N":
+                gearByte = 0x60
+            case b"D":
+                gearByte = 0x80
+            case b"S":
+                gearByte = 0x81
+            case b"M":
+                gearByte = 0x02
+            case _:
+                gearByte = 0x60
         messages_100ms = [
             
             can.Message(arbitration_id=0x3c, data=[ # Ignition Status
@@ -189,7 +194,6 @@ while True:
             
             can.Message(arbitration_id=0x21a, data=[ # lights "lamp status"
                 (lowbeam*4)+(highbeam*2)+(foglight*32)+(rear_foglight*64), 0, 0xf7], is_extended_id=False),
-            
 
             can.Message(arbitration_id=0x2a7, data=[ # Power STeering "display, Check Control, driving dynamics" 
                 0xa7,counter_4bit_eps+0xf0,0xfe,0xff,0x13], is_extended_id=False),
@@ -220,7 +224,7 @@ while True:
             
 
             can.Message(arbitration_id=0x3fd, data=[ # 0x80 is drive, 0x20 is park, 0x40 is reverse, 0x81 is ds, 
-                0xff, counter_4bit_100ms, 0x80, 0,0xFF], is_extended_id=False),
+                0xff, counter_4bit_100ms + (int.from_bytes(gear, byteorder='big')&0xf)*16, gearByte, 0,0xFF], is_extended_id=False),
 
             can.Message(arbitration_id=0x581, data=[ # Seatbelt
                 0x40,0x4d,0,0x29,0xff,0xff,0xff,0xff], is_extended_id=False),
@@ -275,8 +279,6 @@ while True:
         messages_10ms[0].data[0] = crc8_sae_j1850(messages_10ms[0].data, 0x2c, 0x1d,0) # RPM Checksum
         
         for message in messages_10ms:
-            #if message.arbitration_id == 0xf3:
-                #print(message)
             bus.send(message)
             wpt.sleep(0.001)
         start_time_10ms = time.time()
