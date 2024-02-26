@@ -1,3 +1,4 @@
+
 349 fuel
 3d8 drive mode
 1f6 directionals
@@ -8,7 +9,6 @@ f3 rpm
 1a1 speed
 5c0 check control messages
 291 language and units
-2a7 ?
 a5 eco pro boost
 2ec navigation
 30b auto start/stop
@@ -19,6 +19,8 @@ a5 eco pro boost
 3f9 and 3fd gear
 36f parklight
 
+
+cc ids that are confirmed to work
 0x22 0x24 is mil and tc off for CC message
 0x39 is auto hold
 24 brake light
@@ -39,6 +41,4 @@ a5 eco pro boost
 
 id 223 shift lights
 
-
-gear is 0x3a byte 2 ([1])
 
