@@ -8,3 +8,4 @@ speed, rpm, fuel, temp, gear, directionals, foglight, parking lights, highbeam w
 
 temp gauge is buggy, so are directionals
 
+Big thanks to jiggo/e91_330d for his inital sketch and helping me find more ids along with the gear message
