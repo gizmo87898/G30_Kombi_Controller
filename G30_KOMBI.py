@@ -18,7 +18,7 @@ start_time_100ms = time.time()
 start_time_10ms = time.time()
 start_time_5s = time.time()
 
-id_counter = 0x280
+id_counter = 0x327
 
 counter_8bit = 0
 counter_4bit_100ms = 0
@@ -31,7 +31,7 @@ ignition = True
 rpm = 780
 speed = 0
 gear = b'1'
-gearSelector = 0
+gearSelector = b"S"
 coolant_temp = 90
 oil_temp = 90
 fuel = 100
@@ -107,6 +107,15 @@ def gui_thread():
 gui_thread = threading.Thread(target=gui_thread)
 gui_thread.start()
 
+def receive():
+    while True:
+        message = bus.recv()
+        print(message)
+
+receive = threading.Thread(target=receive)    
+receive.start()
+
+
 while True:
     current_time = time.time()
     
@@ -121,6 +130,7 @@ while True:
         oil_temp = int(packet[12])
         fuel = int(packet[10]*100)
         gearSelector = packet[3]
+
         gear = packet[4]
         left_directional = False
         right_directional = False
@@ -182,7 +192,7 @@ while True:
             case b"M":
                 gearByte = 0x02
             case _:
-                gearByte = 0x60
+                gearByte = 0x00
         messages_100ms = [
             
             can.Message(arbitration_id=0x3c, data=[ # Ignition Status
@@ -290,6 +300,7 @@ while True:
             id_counter = 0
 
         start_time_5s = time.time()
-    
+send_thread_20ms.join()
+
 sock.close()
 
