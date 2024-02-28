@@ -2,6 +2,7 @@
 
 Before running, do:
 pip install python-can
+
 pip install pyserial
 
 Place the outgauge.lua file in C:\Program Files (x86)\Steam\steamapps\common\BeamNG.drive\lua\vehicle\extensions (or wherever your game is)
