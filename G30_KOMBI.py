@@ -110,7 +110,11 @@ gui_thread.start()
 def receive():
     while True:
         message = bus.recv()
-        print(message)
+
+        if message.arbitration_id == 0x2ca:
+            print("Outside Temp: " + str((message.data[0]/2)-40))
+        else:
+            print(message)
 
 receive = threading.Thread(target=receive)    
 receive.start()
