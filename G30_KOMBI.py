@@ -1,6 +1,6 @@
 import time
 import can
-import random
+import random 
 import socket
 import struct
 import select 
@@ -9,7 +9,7 @@ import tkinter as tk
 import win_precise_time as wpt
 from datetime import datetime
 
-bus = can.interface.Bus(channel='com8', bustype='seeedstudio', bitrate=500000)
+bus = can.interface.Bus(channel='com3', bustype='seeedstudio', bitrate=500000)
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 sock.bind(('127.0.0.1', 4444))
     
@@ -18,7 +18,7 @@ start_time_100ms = time.time()
 start_time_10ms = time.time()
 start_time_5s = time.time()
 
-id_counter = 0x327
+id_counter = 0x500
 
 counter_8bit = 0
 counter_4bit_100ms = 0
@@ -30,12 +30,12 @@ abs_counter = 0
 ignition = True
 rpm = 780
 speed = 0
-gear = b'1'
-gearSelector = b"S"
+gear = b'0'
+gearSelector = b"P"
 coolant_temp = 90
 oil_temp = 90
 fuel = 100
-drive_mode = 7
+drive_mode = 3
 
 shiftlight = False
 shiftlight_start = 5000
@@ -111,10 +111,10 @@ def receive():
     while True:
         message = bus.recv()
 
-        if message.arbitration_id == 0x2ca:
-            print("Outside Temp: " + str((message.data[0]/2)-40))
-        else:
-            print(message)
+        #if message.arbitration_id == 0x2ca:
+        #    print("Outside Temp: " + str((message.data[0]/2)-40))
+        #else:
+        #    print(message)
 
 receive = threading.Thread(target=receive)    
 receive.start()
@@ -129,12 +129,11 @@ while True:
         data, _ = sock.recvfrom(256)
         packet = struct.unpack('I4sHc2c7f2I3f16s16si', data)
         rpm = int(max(min(packet[7], 8000), 0))
-        speed = min(int(packet[6]*2.5), 1200) #convert speed to km/h
+        speed = int(packet[6]*2.5) #convert speed to km/h
         coolant_temp = int(packet[9])
         oil_temp = int(packet[12])
         fuel = int(packet[10]*100)
         gearSelector = packet[3]
-
         gear = packet[4]
         left_directional = False
         right_directional = False
@@ -214,11 +213,11 @@ while True:
             can.Message(arbitration_id=0x5c0, data=[ # MIL
                 0x40, 34, 0x00, 0x30+check_engine, 0xFF, 0xFF, 0xFF, 0xFF], is_extended_id=False),
             
-            can.Message(arbitration_id=0x5c1, data=[ # gear wakeup
-                255,255,255,255, 0, 0, 0, 0], is_extended_id=False),
+            can.Message(arbitration_id=0x291, data=[ # gear wakeup
+                3,0,0,0,0,0,0,0], is_extended_id=False),
                 
             can.Message(arbitration_id=0x2c4, data=[ # engine temp
-                0x8B, 0xFF, oil_temp+8, 0xCD, 0x5D, 0x37, 0xCD, 0xA8], is_extended_id=False),
+                0x8B, 0xFF, oil_temp+8, 0xCD, 0x5D, 0x37, 0xCD, random.randint(0,255)], is_extended_id=False),
             
             can.Message(arbitration_id=0x30b, data=[ # Auto Start/Stop "status, automatic engine start-stop function"
                 0,0,0,4,0,0,0,0], is_extended_id=False),
@@ -245,8 +244,8 @@ while True:
             can.Message(arbitration_id=0x1ee, data=[ # BC button
                 0x00+(bc*64),0xff], is_extended_id=False),
 
-            #can.Message(arbitration_id=0x5c0, data=[ # MIL
-            #    0x40, 34, 0x00, 0x30+check_engine, 0xFF, 0xFF, 0xFF, 0xFF], is_extended_id=False),
+            can.Message(arbitration_id=0x291, data=[ # units
+                0b00001011,0,0,0,0,0,0,0], is_extended_id=False),
 
             can.Message(arbitration_id=0x510, data=[
                 random.randint(0,255),random.randint(0,255),random.randint(0,255),random.randint(0,255),random.randint(0,255),random.randint(0,255),random.randint(0,255),random.randint(0,255)], is_extended_id=False),
@@ -304,6 +303,7 @@ while True:
             id_counter = 0
 
         start_time_5s = time.time()
+
 send_thread_20ms.join()
 
 sock.close()
