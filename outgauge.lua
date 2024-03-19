@@ -27,8 +27,8 @@ local function declareOutgaugeStruct()
       unsigned       time;            // [0] time in milliseconds (to check order) // N/A, hardcoded to 0
       char           car[4];          // [1]  Car name // N/A, hardcoded to "beam"
       unsigned short flags;           // [2] Info (see OG_x below)
-      char           gear[2];         // [3]  Gear selector position, P/R/N/D/S/M/L
-                                      // [4]  Gear 1/2/3/4/5/6/7, null if not a manual car, or in sport/manual mode
+      char           gear;            // [3]  Gear selector position, P/R/N/D/S/M/L
+      char           gearIndex;       // [4]  Gear 1/2/3/4/5/6/7, null if not a manual car, or in sport/manual mode
       char           plid;            // [5]  Unique ID of viewed player (0 = none) // N/A, hardcoded to 0
       float          speed;           // [6]  M/S
       float          rpm;             // [7]  RPM
@@ -120,11 +120,10 @@ local function sendPackage(ip, port, id)
   o.time = 0 -- not used atm
   o.car = "beam"
   o.flags = OG_KM + OG_BAR + (electrics.values.turboBoost and OG_TURBO or 0)
-  if electrics.values.automaticModes ~= 0 then -- if it's an automatic transmission
-    o.gear = electrics.values.gear -- Assuming electrics.values.gear contains "P", "R", "N", or "D"
-  else -- if it's a manual transmission
-    o.gear[1] = electrics.values.gearIndex
-  end
+
+
+  o.gear = string.byte(electrics.values.gear)
+  o.gearIndex = electrics.values.gearIndex
 
   o.plid = 0
   o.speed = electrics.values.wheelspeed or electrics.values.airspeed
@@ -137,6 +136,14 @@ local function sendPackage(ip, port, id)
   o.oilTemp = electrics.values.oiltemp or 0
 
   -- the lights
+
+  if hasShiftLights then
+    o.dashLights = bit.bor(o.dashLights, DL_SHIFT)
+    if electrics.values.shouldShift then
+      o.showLights = bit.bor(o.showLights, DL_SHIFT)
+    end
+  end
+
   o.dashLights = bit.bor(o.dashLights, DL_FULLBEAM)
   if electrics.values.highbeam ~= 0 then
     o.showLights = bit.bor(o.showLights, DL_FULLBEAM)
@@ -146,6 +153,15 @@ local function sendPackage(ip, port, id)
   if electrics.values.parkingbrake ~= 0 then
     o.showLights = bit.bor(o.showLights, DL_HANDBRAKE)
   end
+
+  hasESC = electrics.values.hasESC
+  if hasESC then
+    o.dashLights = bit.bor(o.dashLights, DL_TC)
+    if electrics.values.esc ~= 0 or electrics.values.tcs ~= 0 then
+      o.showLights = bit.bor(o.showLights, DL_TC)
+    end
+  end
+
 
   o.dashLights = bit.bor(o.dashLights, DL_SIGNAL_L)
   if electrics.values.signal_L ~= 0 then
@@ -157,6 +173,18 @@ local function sendPackage(ip, port, id)
     o.showLights = bit.bor(o.showLights, DL_SIGNAL_R)
   end
 
+  o.dashLights = bit.bor(o.dashLights, DL_OILWARN)
+  if electrics.values.oil ~= 0 then
+    o.showLights = bit.bor(o.showLights, DL_OILWARN)
+  end
+
+  
+  
+  o.dashLights = bit.bor(o.dashLights, DL_BATTERY)
+  if electrics.values.engineRunning == 0 then
+    o.showLights = bit.bor(o.showLights, DL_BATTERY)
+  end
+
   local hasABS = electrics.values.hasABS or false
   if hasABS then
     o.dashLights = bit.bor(o.dashLights, DL_ABS)
@@ -165,31 +193,7 @@ local function sendPackage(ip, port, id)
     end
   end
 
-  o.dashLights = bit.bor(o.dashLights, DL_OILWARN)
-  if electrics.values.oil ~= 0 then
-    o.showLights = bit.bor(o.showLights, DL_OILWARN)
-  end
-
-  o.dashLights = bit.bor(o.dashLights, DL_BATTERY)
-  if electrics.values.engineRunning == 0 then
-    o.showLights = bit.bor(o.showLights, DL_BATTERY)
-  end
-
-  hasESC = electrics.values.hasESC
-  if hasESC then
-    o.dashLights = bit.bor(o.dashLights, DL_TC)
-    if electrics.values.esc ~= 0 or electrics.values.tcs ~= 0 then
-      o.showLights = bit.bor(o.showLights, DL_TC)
-    end
-  end
-
-  if hasShiftLights then
-    o.dashLights = bit.bor(o.dashLights, DL_SHIFT)
-    if electrics.values.shouldShift then
-      o.showLights = bit.bor(o.showLights, DL_SHIFT)
-    end
-  end
-
+  
   o.dashLights = bit.bor(o.dashLights, DL_IGNITION)
   if electrics.values.ignition ~= 0 then
     o.showLights = bit.bor(o.showLights, DL_IGNITION)

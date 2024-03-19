@@ -18,7 +18,7 @@ start_time_100ms = time.time()
 start_time_10ms = time.time()
 start_time_5s = time.time()
 
-id_counter = 0x500
+id_counter = 0
 
 counter_8bit = 0
 counter_4bit_100ms = 0
@@ -35,7 +35,7 @@ gearSelector = b"P"
 coolant_temp = 90
 oil_temp = 90
 fuel = 100
-drive_mode = 3
+drive_mode = 2
 
 shiftlight = False
 shiftlight_start = 5000
@@ -181,6 +181,9 @@ while True:
     if elapsed_time_100ms >= 0.05:
         date = datetime.now()
         fuel_level = round(0x2500 - (fuel / 100) * (0x2500 - 0x0200))
+        overtemp = False
+        if coolant_temp >= 120:
+            overtemp = True
         match gearSelector:
             case b"P":
                 gearByte = 0x20
@@ -195,7 +198,13 @@ while True:
             case b"M":
                 gearByte = 0x02
             case _:
-                gearByte = 0x00
+                match gear:
+                    case b'\x00':
+                        gearByte = 0x60
+                    case b'\xff':
+                        gearByte = 0x40
+                    case _:
+                        gearByte = 0x00
         messages_100ms = [
             
             can.Message(arbitration_id=0x3c, data=[ # Ignition Status
@@ -213,8 +222,8 @@ while True:
             can.Message(arbitration_id=0x5c0, data=[ # MIL
                 0x40, 34, 0x00, 0x30+check_engine, 0xFF, 0xFF, 0xFF, 0xFF], is_extended_id=False),
             
-            can.Message(arbitration_id=0x291, data=[ # gear wakeup
-                3,0,0,0,0,0,0,0], is_extended_id=False),
+            can.Message(arbitration_id=0x291, data=[ # language
+                3,0x24,0,0,0,0,0,0], is_extended_id=False),
                 
             can.Message(arbitration_id=0x2c4, data=[ # engine temp
                 0x8B, 0xFF, oil_temp+8, 0xCD, 0x5D, 0x37, 0xCD, random.randint(0,255)], is_extended_id=False),
@@ -244,8 +253,11 @@ while True:
             can.Message(arbitration_id=0x1ee, data=[ # BC button
                 0x00+(bc*64),0xff], is_extended_id=False),
 
-            can.Message(arbitration_id=0x291, data=[ # units
-                0b00001011,0,0,0,0,0,0,0], is_extended_id=False),
+            can.Message(arbitration_id=0x5c2, data=[ # eng temp error
+                0x40, 39, 0x00, 0x30+overtemp, 0xFF, 0xFF, 0xFF, 0xFF], is_extended_id=False),
+
+            can.Message(arbitration_id=0x5c3, data=[ # tire pressure error
+                0x40, 147, 0x00, 0x30+lowpressure, 0xFF, 0xFF, 0xFF, 0xFF], is_extended_id=False),
 
             can.Message(arbitration_id=0x510, data=[
                 random.randint(0,255),random.randint(0,255),random.randint(0,255),random.randint(0,255),random.randint(0,255),random.randint(0,255),random.randint(0,255),random.randint(0,255)], is_extended_id=False),
